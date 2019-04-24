@@ -1,71 +1,68 @@
 
-        <!-- Contact-Section Start -->
-         <div class="contact-section" data-scroll-index="1">
-            <div class="container">
-                <div class="contact-block clearfix">
-                   
-                    <div class="contact-right">
-                        <div class="goto-map clearfix">
-                            <a href="JavaScript:Void(0);"><img src="images/map-marker.png" alt="">Go to google map</a>
-                        </div>
-                        <div class="c-form contact-form all_form">
-                            <h3 class="wow fadeInUp" data-wow-duration="1.1s">Find the Best Corrugated Boxes for Your Needs</h3>
-                              <div class="wow fadeInUp" data-wow-duration="1.6s">
-                                <!--form name="contact-form" method="post" id="contact-form" action="php/mail.php"-->
-                                <form id="contact-form" action="php/mail.php" method="post">
-                                    <div class="form-row"><input class="input-text" type="text" placeholder="Name *" id="name" name="name"></div>
-                                    <div class="form-row"><input class="input-text" type="email" placeholder="Email *" id="email" name="email"></div>
-                                    <div class="form-row">
-                                        <div class="l-row"><input class="input-text" type="text" placeholder="Location" id="location" name="location"></div>
-                                        <div class="r-row"><input class="input-text" type="tel" placeholder="Phone *" id="number" name="number"></div>
-                                    </div>
-                                    <div class="form-row"><textarea class="input-text" placeholder="Requirement Details*" id="comment" name="comment"></textarea></div>
-                                    
-                                    <div class="form-row">
-                                        <button type="submit" class="btn btn-default button button--isi sendmail">Send</button>
-                                    </div> 
-                                   <!--  <input type="submit" name="send" id="send" value="SEND" class="btn btn-default button button--isi">-->
-                                </form>
+<html>
+<head>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+    <body>  
+        <div class="container">
+            <!-- Contact-Section Start -->
+            <div class="contact-section clearfix">
+                <div class="c-form contact-form all_form">
+                    <h3>Contact Form</h3>
+                    <!--form name="contact-form" method="post" id="contact-form" action="php/mail.php"-->
+                    <form id="contact-form" action="php/mail.php" method="post">
+                        <div class="form-row clearfix">
+                            <div class="form-col clearfix">
+                                <input class="input-text error" type="text" placeholder="Name *" id="name" name="name">
+                                <p class="error">Enter Your Name</p>
                             </div>
-                            <div id="successSend" class="alert alert-success hide">
-                            <strong>Success!</strong> Your message has been sent.</div>
-                            <div id="errorSend" class="alert alert-danger hide">
-                            <strong>Error!</strong> There was a problem. Please try again later.</div>     
+                        </div>
+                        <div class="form-row clearfix">
+                            <div class="form-col clearfix">
+                                <input class="input-text" type="email" placeholder="Email *" id="email" name="email">
+                            </div>
+                        </div>
+                        <div class="form-row clearfix">
+                            <div class="form-col clearfix">
+                                <div class="l-col clearfix">
+                                    <input class="input-text" type="text" placeholder="Location" id="location" name="location">
+                                </div>
+                            </div>
+                            <div class="form-col clearfix">
+                                <div class="r-col clearfix">
+                                    <input class="input-text" type="tel" placeholder="Phone *" id="number" name="number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row clearfix">
+                            <div class="form-col clearfix">
+                                <textarea class="input-text" placeholder="Requirement Details*" id="comment" name="comment"></textarea>
+                            </div>
                         </div>
                         
+                        <div class="form-row clearfix">
+                            <div class="form-col clearfix">
+                                <button type="submit" class="btn btn-default button button--isi sendmail">Send</button>
+                            </div>
+                        </div> 
+                        <!--  <input type="submit" name="send" id="send" value="SEND" class="btn btn-default button button--isi">-->
+                    </form>
+
+                    <div id="successSend" class="alert alert-success hide clearfix">
+                        <strong>Success!</strong> Your message has been sent.
                     </div>
-                    <
+                    <div id="errorSend" class="alert alert-danger hide clearfix">
+                        <strong>Error!</strong> There was a problem. Please try again later.
+                    </div>     
                 </div>
             </div>
+            <!-- Contact-Section End -->
          </div>
-         <!-- Contact-Section End -->
-         
-         <!-- Footer Start -->
-         <div class="footer">
-            <div class="container">
-                <div class="copyright">&copy; Copyright Z Index Solutions 2019, All rights reserved.</div>
-            </div>
-         </div>
-         <!-- Footer Start -->
-        <a data-scroll-goto="0" id="back-to-top" href="#" class="btn btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
         <!-- Load JS siles -->  
         <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-        
-        <script type="text/javascript" src="js/classie.js"></script>
-        
-        <script type="text/javascript" src="js/typed.js"></script>
-        <script type="text/javascript" src="js/jquery.scrollme.js"></script>
-        <script type="text/javascript" src="js/wow.js"></script>
-        <script type="text/javascript" src="js/owl.carousel.js"></script> 
-        <script type="text/javascript" src="js/scrollIt.js"></script>
-        <script type="text/javascript" src="js/jquery.fancybox.js"></script>
-       <script type="text/javascript" src="js/modernizr.custom.46884.js"></script>
-       <script type="text/javascript" src="js/jquery.slicebox.js"></script>
-        
         <!-- general script file -->
 
         <script type="text/javascript" src="js/sendmail.js"></script>
         <script type="text/javascript" src="js/script.js"></script>	
-        
     </body>
 </html>
