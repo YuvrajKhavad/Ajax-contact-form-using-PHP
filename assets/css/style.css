@@ -152,5 +152,9 @@
 	border-color: #ebccd1;
 }
 
+.hide {
+	display: none;
+}
+
 
  /*========== Contact-Section End ==========*/

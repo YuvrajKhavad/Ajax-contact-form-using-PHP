@@ -4,10 +4,11 @@ $(document).ready(function()
 	{
 		var name =  $('#name').val();
 		var email =  $('#email').val().toLowerCase();
-		var number =  $('#number').val();
 		var location = $('#location').val();
+		var number =  $('#number').val();
 		var comment = $('#comment').val();
 		var error = false;
+
 		if(name == "")
 		{
 			$("#name").addClass("error");
@@ -15,8 +16,8 @@ $(document).ready(function()
 			$("#name").after('<p class="error name">Please enter name</p>');
 			$('#errorSend').removeClass('hide');
 			error = true;
+		}
 
-		}	
 		if(email == "")
 		{
 			$("#email").addClass("error");
@@ -37,15 +38,8 @@ $(document).ready(function()
 		{
 			$( ".email" ).remove();
 		}
-		if(comment == "")
-		{
-			$("#comment").addClass("error");
-			$(".comment").remove();
-			$("#comment").after('<p class="error comment">Please enter comment</p>');
-			$("#errorSend").removeClass('hide');
-			error = true;
-		}		
-		if (number == "") 
+
+		if (number == "")
 		{
 			$("#number").addClass("error");
 			$(".number").remove();
@@ -53,8 +47,29 @@ $(document).ready(function()
 			$('#errorSend').removeClass('hide');
 			error = true;
 		}
+		else if(!validatePhone(number))
+		{
+			$("#number").addClass("error");
+			$(".number" ).remove();
+			$("#number").after('<p class="error number">Your phone number is invalid. Please enter a valid phone number.</p>');
+			$('#errorSend').removeClass('hide');
+			error = true;
+		}
+		else
+		{
+			$( ".number" ).remove();
+		}
 
-		if (error == false) 
+		if(comment == "")
+		{
+			$("#comment").addClass("error");
+			$(".comment").remove();
+			$("#comment").after('<p class="error comment">Please enter comment</p>');
+			$("#errorSend").removeClass('hide');
+			error = true;
+		}
+
+		if (error == false)
 		{
 			var dataString = $('#contact-form').serialize(); // Collect data from form
             $.ajax({
@@ -62,14 +77,15 @@ $(document).ready(function()
                 url: $('#contact-form').attr('action'),
                 data: dataString,
                 timeout: 6000,
-                error: function (request, error) 
+                error: function (request, error)
                 {
 
                 },
-                success: function (response) 
+                success: function (response)
                 {
+					alert(response);
                     response = $.parseJSON(response);
-                    if (response.success) 
+                    if (response.success)
 					{
 						//alert(response.success);
 						$('#successSend').removeClass('hide');
@@ -82,11 +98,11 @@ $(document).ready(function()
 
                         setTimeout(function()
 		                {
-		                	$('#successSend').addClass('hide');		
+		                	$('#successSend').addClass('hide');
 
 		                }, 3000);
-                    } 
-					else 
+                    }
+					else
 					{
 						$('#errorSend').removeClass('invisible');
                     }
@@ -98,10 +114,10 @@ $(document).ready(function()
         {
         	setTimeout(function()
             {
-            	$('#errorSend').addClass('hide');	
+            	$('#errorSend').addClass('hide');
 
-            	var ids = ["name", "email", "number", "comment"];	
-            	$.grep( ids, function( n, i ) 
+            	var ids = ["name", "email", "number", "comment"];
+            	$.grep( ids, function( n, i )
             	{
 					$( "."+n ).remove();
 					$("#"+n ).removeClass('error');
@@ -110,68 +126,26 @@ $(document).ready(function()
             }, 5000);
         	return false;
         }
-		
-	}); 
-	
-	$('#name,#email,#number,#comment').keyup(function() 
+
+	});
+
+	$('#name,#email,#number,#comment').keyup(function()
 	{
 		var cid =  $(this).attr('id');
 		$( "."+cid ).remove();
 		$('#errorSend').addClass('hide');
 		$("#"+cid ).removeClass('error');
 	});
-	
-	function validateEmail($email) 
+
+	function validateEmail($email)
 	{
 		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 		return emailReg.test( $email );
 	}
-	
-	$(".fancybox").fancybox({
-		openEffect	: 'fade',
-		closeEffect	: 'fade'
-	});
-});
 
-/*
-function getTimeRemaining(endtime) 
-{
-	var t = Date.parse(endtime) - Date.parse(new Date());
-	var seconds = Math.floor((t / 1000) % 60);
-	var minutes = Math.floor((t / 1000 / 60) % 60);
-	var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-	var days = Math.floor(t / (1000 * 60 * 60 * 24));
-	return {
-		'total': t,
-		'days': days,
-		'hours': hours,
-		'minutes': minutes,
-		'seconds': seconds
-	};
-}function initializeClock(id, endtime) 
-{
-	var clock = document.getElementById(id);
-	var daysSpan = clock.querySelector('.days');
-	var hoursSpan = clock.querySelector('.hours');
-	var minutesSpan = clock.querySelector('.minutes');
-	var secondsSpan = clock.querySelector('.seconds');
-
-	function updateClock() 
+	function validatePhone($number)
 	{
-		var t = getTimeRemaining('3/05/2017');
-		daysSpan.innerHTML = t.days;
-		hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-		minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-		secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-		if (t.total <= 0)
-		{
-			clearInterval(timeinterval);
-		}
+		var phoneReg = /^\(?(\d{3})\)?[-\. ]?(\d{3})[-\. ]?(\d{4})$/;
+		return phoneReg.test( $number );
 	}
-
-	updateClock();
-	var timeinterval = setInterval(updateClock, 1000);
-}
-var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
-initializeClock('clockdiv', deadline);*/
+});
