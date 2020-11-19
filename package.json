@@ -1,0 +1,22 @@
+{
+  "name": "ajax-contact-form-using-php",
+  "version": "1.0.0",
+  "description": "Send contact form using ajax and php information using ajax and php",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuvrajKhavad/AJAX-Contact-Form-Using-PHP.git"
+  },
+  "author": "Yuvraj Khavad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuvrajKhavad/AJAX-Contact-Form-Using-PHP/issues"
+  },
+  "homepage": "https://github.com/YuvrajKhavad/AJAX-Contact-Form-Using-PHP#readme",
+  "dependencies": {
+    "validate.js": "^0.13.1"
+  }
+}
