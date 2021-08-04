@@ -52,6 +52,11 @@
 	margin: 3px 0;
 }
 
+.c-form form label.error {
+	color: #e7512f;
+	margin: 3px 0;
+}
+
 .c-form form .input-text:focus{
 	outline: none;
 }

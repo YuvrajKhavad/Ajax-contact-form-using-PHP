@@ -7,74 +7,78 @@ if (!empty($_POST))
   $_POST  = multiDimensionalArrayMap('cleanData', $_POST);
 
   //your email adress
-  $emailTo ="info@zindex.co.in"; //"yourmail@yoursite.com";
+  $emailTo ="drcoders1@gmail.com"; //"yourmail@yoursite.com";
 
   //from email adress
   $emailFrom ="no-replay@zindex.co.in"; //"contact@yoursite.com";
 
+  $company_name = " Z Index Solutions";
+  $main_color = "#ff0000";
+  $second_color="#ffffff";
+
   //email subject
-  $emailSubject = "Mail from Z Index Solutions Website";
+  $emailSubject = "Mail from '".$company_name."' Website";
 
-  $name = $_POST["name"];
-  $email = $_POST["email"];
-  $location = $_POST["location"];
-  $contact = $_POST['number'];
-  $comment = $_POST["comment"];
-
-  if($name == "")
-  $data['success'] = false;
-
-  if (!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $email))
-  $data['success'] = false;
-
-
-  if($comment == "")
-  $data['success'] = false;
+  $form_data = $_POST['form_data'];
+  if(empty($form_data))
+  {
+    $data['success'] = false;
+  }
+  
 
   if($data['success'] == true)
   {
-    $message = "Hello Team Z Index Solutions,<br> Listed below are new message<br><br>";
+    $message = "<p>Hello Team '".$company_name."',<br> Listed below are new message<br><br></p>";
 
-    $message .= '<table style="font-family: arial, sans-serif;  border-collapse: collapse;">';
+    $message .= '<div style="max-width: 700px; font-size:small;">';
+    $message .= '<table style="max-width: 700px; font-size:small; font-family: arial,sans-serif; border-collapse: collapse; width: 100%;">';
 
-    $message .= '<tr style="background-color: #dddddd;">';
-    $message .= '<td style="padding: 8px; font-weight:bold;">Name: </td>';
-    $message .= '<td style="padding: 8px;">'.$name.'</td>';
-    $message .= '</tr>';
+    $message .= '<thead>
+                    <tr>
+                      <th colspan="2"><p style="border: 2px solid '.$main_color.'; color: '.$main_color.'; text-align: center; padding: 5px 0;">Contact Details</p></th>
+                    </tr>
+                 </thead>';
 
-    $message .= '<tr>';
-    $message .= '<td style="padding: 8px; font-weight:bold;">Email Address: </td>';
-    $message .= '<td style="padding: 8px;">'.$email.'</td>';
-    $message .= '</tr>';
+    
+    $message .= '<tbody style="font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif">';  
 
-    if($location)
+    $i = 0;
+    foreach($form_data as $f_data)
     {
-      $message .= '<tr style="background-color: #dddddd;">';
-      $message .= '<td style="padding: 8px; font-weight:bold;">Location: </td>';
-      $message .= '<td style="padding: 8px;">'.$location.'</td>';
-      $message .= '</tr>';
+      
+      $name = str_replace('_', ' ',$f_data['name']);
+      $name = ucwords($name);
+      if($i%2==0)
+      {
+          $message .= '<tr style="background-color: '.$main_color.'; color: '.$second_color.';">';
+          $message .= '<td style="width:150px; border-right: 1px solid #fff; padding: 8px;"><b>'. $name.'</b></td>';
+          $message .= '<td style="padding: 8px;">'.$f_data['value'].'</td>';
+          $message .= '</tr>';
+      }
+      else
+      {
+          $message .= '<tr style="background-color: '.$second_color.'; color: '.$main_color.';">';
+          $message .= '<td style="width:150px; border-right: 1px solid #FF6600; padding: 8px;"><b>'. $name.'</b></td>';
+          $message .= '<td style="padding: 8px;">'.$f_data['value'].'</td>';
+          $message .= '</tr>';
+      }
+       $i++;
     }
 
-    $style = ($location)?' ':' style="background-color: #dddddd;"';
-    $style2 = ($location)?' style="background-color: #dddddd;"':' ';
-
-    $message .= '<tr'.$style.'>';
-    $message .= '<td style="padding: 8px; font-weight:bold;">Phone: </td>';
-    $message .= '<td style="padding: 8px;">'.$contact.'</td>';
-    $message .= '</tr>';
-
-    $message .= '<tr'.$style2.'>';
-    $message .= '<td style="padding: 8px; font-weight:bold;">Requirement Details: </td>';
-    $message .= '<td style="padding: 8px;">'.$comment.'</td>';
-    $message .= '</tr>';
-
+    $message .= '</tbody>';
     $message .= '</table>';
-
-    $message .= '<br/><br/> Thank You.';
+    $message .= '</div>';
+    
+    $message .= '<tfoot>
+                    <tr>
+                      <th colspan="2"><p style="border: 2px solid '.$main_color.'; color: '.$main_color.'; text-align: center; padding: 5px 0;">Thank You. <br> </p></th>
+                    </tr>
+                 </tfoot>';
+    //$message .= '<br/><br/> Thank You.';
 
     $headers = "MIME-Version: 1.0" . "\r\n"; 
     $headers .= "Content-type:text/html; charset=utf-8" . "\r\n";
-    $headers .= "From: Z Index Solutions <$emailFrom>" . "\r\n";
+    $headers .= "From: '".$company_name."' <$emailFrom>" . "\r\n";
     mail($emailTo, $emailSubject, $message, $headers);
 
     $data['success'] = true;
